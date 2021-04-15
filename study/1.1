@@ -1,0 +1,32 @@
+
+import numpy as np
+import pandas as pd
+
+labels = ['a', 'b', 'c']
+my_data = [10,20,30]
+arr = np.array(my_data)
+d = {'a':10, 'b':20, 'c':30}
+print(pd.Series(arr, labels))
+
+from numpy.random import randn
+np.random.seed(101)
+df = pd.DataFrame(randn(5,4),['A','B','C','D','E'], ['W','X','Y','Z'])
+print(df[df['W']>0][['Y','X']])
+boolser = df['W']>0
+result = df[boolser]
+mucols = ['Y','X']
+print(result[mucols])
+
+newind = 'CA NY WY OR CO'.split()
+df['States'] = newind
+dff = df.set_index('States')
+print(dff)
+
+outside = ['G1', 'G1', 'G1', 'G2', 'G2', 'G2']
+inside = [1, 2, 3, 1, 2, 3]
+hier_index = list(zip(outside,inside))
+hier_index = pd.MultiIndex.from_tuples(hier_index)
+print(hier_index)
+dr = pd.DataFrame(randn(6,2), hier_index,['A'])
+print(dr)
+
